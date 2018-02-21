@@ -32,12 +32,12 @@ class ConsumeStaminaRequest(Gs2UserRequest):
         super(ConsumeStaminaRequest, self).__init__(params)
         if params is None:
             self.__stamina_pool_name = None
-            self.__max_value = None
             self.__variation = None
+            self.__max_value = None
         else:
             self.set_stamina_pool_name(params['staminaPoolName'] if 'staminaPoolName' in params.keys() else None)
-            self.set_max_value(params['maxValue'] if 'maxValue' in params.keys() else None)
             self.set_variation(params['variation'] if 'variation' in params.keys() else None)
+            self.set_max_value(params['maxValue'] if 'maxValue' in params.keys() else None)
 
     def get_stamina_pool_name(self):
         """
@@ -68,35 +68,6 @@ class ConsumeStaminaRequest(Gs2UserRequest):
         self.set_stamina_pool_name(stamina_pool_name)
         return self
 
-    def get_max_value(self):
-        """
-        スタミナの最大値を取得
-        :return: スタミナの最大値
-        :rtype: int
-        """
-        return self.__max_value
-
-    def set_max_value(self, max_value):
-        """
-        スタミナの最大値を設定
-        :param max_value: スタミナの最大値
-        :type max_value: int
-        """
-        if not isinstance(max_value, int):
-            raise TypeError(type(max_value))
-        self.__max_value = max_value
-
-    def with_max_value(self, max_value):
-        """
-        スタミナの最大値を設定
-        :param max_value: スタミナの最大値
-        :type max_value: int
-        :return: this
-        :rtype: ConsumeStaminaRequest
-        """
-        self.set_max_value(max_value)
-        return self
-
     def get_variation(self):
         """
         スタミナの消費量を取得
@@ -124,4 +95,33 @@ class ConsumeStaminaRequest(Gs2UserRequest):
         :rtype: ConsumeStaminaRequest
         """
         self.set_variation(variation)
+        return self
+
+    def get_max_value(self):
+        """
+        スタミナの最大値を取得
+        :return: スタミナの最大値
+        :rtype: int
+        """
+        return self.__max_value
+
+    def set_max_value(self, max_value):
+        """
+        スタミナの最大値を設定
+        :param max_value: スタミナの最大値
+        :type max_value: int
+        """
+        if not isinstance(max_value, int):
+            raise TypeError(type(max_value))
+        self.__max_value = max_value
+
+    def with_max_value(self, max_value):
+        """
+        スタミナの最大値を設定
+        :param max_value: スタミナの最大値
+        :type max_value: int
+        :return: this
+        :rtype: ConsumeStaminaRequest
+        """
+        self.set_max_value(max_value)
         return self

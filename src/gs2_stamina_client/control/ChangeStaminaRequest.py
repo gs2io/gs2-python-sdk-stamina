@@ -32,14 +32,14 @@ class ChangeStaminaRequest(Gs2UserRequest):
         super(ChangeStaminaRequest, self).__init__(params)
         if params is None:
             self.__stamina_pool_name = None
-            self.__overflow = None
-            self.__max_value = None
             self.__variation = None
+            self.__max_value = None
+            self.__overflow = None
         else:
             self.set_stamina_pool_name(params['staminaPoolName'] if 'staminaPoolName' in params.keys() else None)
-            self.set_overflow(params['overflow'] if 'overflow' in params.keys() else None)
-            self.set_max_value(params['maxValue'] if 'maxValue' in params.keys() else None)
             self.set_variation(params['variation'] if 'variation' in params.keys() else None)
+            self.set_max_value(params['maxValue'] if 'maxValue' in params.keys() else None)
+            self.set_overflow(params['overflow'] if 'overflow' in params.keys() else None)
 
     def get_stamina_pool_name(self):
         """
@@ -70,33 +70,33 @@ class ChangeStaminaRequest(Gs2UserRequest):
         self.set_stamina_pool_name(stamina_pool_name)
         return self
 
-    def get_overflow(self):
+    def get_variation(self):
         """
-        スタミナを回復する際に最大値を超えて回復するかを取得
-        :return: スタミナを回復する際に最大値を超えて回復するか
-        :rtype: bool
+        スタミナの増減量を取得
+        :return: スタミナの増減量
+        :rtype: int
         """
-        return self.__overflow
+        return self.__variation
 
-    def set_overflow(self, overflow):
+    def set_variation(self, variation):
         """
-        スタミナを回復する際に最大値を超えて回復するかを設定
-        :param overflow: スタミナを回復する際に最大値を超えて回復するか
-        :type overflow: bool
+        スタミナの増減量を設定
+        :param variation: スタミナの増減量
+        :type variation: int
         """
-        if not isinstance(overflow, bool):
-            raise TypeError(type(overflow))
-        self.__overflow = overflow
+        if not isinstance(variation, int):
+            raise TypeError(type(variation))
+        self.__variation = variation
 
-    def with_overflow(self, overflow):
+    def with_variation(self, variation):
         """
-        スタミナを回復する際に最大値を超えて回復するかを設定
-        :param overflow: スタミナを回復する際に最大値を超えて回復するか
-        :type overflow: bool
+        スタミナの増減量を設定
+        :param variation: スタミナの増減量
+        :type variation: int
         :return: this
         :rtype: ChangeStaminaRequest
         """
-        self.set_overflow(overflow)
+        self.set_variation(variation)
         return self
 
     def get_max_value(self):
@@ -128,31 +128,31 @@ class ChangeStaminaRequest(Gs2UserRequest):
         self.set_max_value(max_value)
         return self
 
-    def get_variation(self):
+    def get_overflow(self):
         """
-        スタミナの増減量を取得
-        :return: スタミナの増減量
-        :rtype: int
+        スタミナを回復する際に最大値を超えて回復するかを取得
+        :return: スタミナを回復する際に最大値を超えて回復するか
+        :rtype: bool
         """
-        return self.__variation
+        return self.__overflow
 
-    def set_variation(self, variation):
+    def set_overflow(self, overflow):
         """
-        スタミナの増減量を設定
-        :param variation: スタミナの増減量
-        :type variation: int
+        スタミナを回復する際に最大値を超えて回復するかを設定
+        :param overflow: スタミナを回復する際に最大値を超えて回復するか
+        :type overflow: bool
         """
-        if not isinstance(variation, int):
-            raise TypeError(type(variation))
-        self.__variation = variation
+        if not isinstance(overflow, bool):
+            raise TypeError(type(overflow))
+        self.__overflow = overflow
 
-    def with_variation(self, variation):
+    def with_overflow(self, overflow):
         """
-        スタミナの増減量を設定
-        :param variation: スタミナの増減量
-        :type variation: int
+        スタミナを回復する際に最大値を超えて回復するかを設定
+        :param overflow: スタミナを回復する際に最大値を超えて回復するか
+        :type overflow: bool
         :return: this
         :rtype: ChangeStaminaRequest
         """
-        self.set_variation(variation)
+        self.set_overflow(overflow)
         return self

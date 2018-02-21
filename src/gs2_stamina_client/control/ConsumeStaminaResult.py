@@ -26,17 +26,9 @@ class ConsumeStaminaResult(object):
         :type response: dict
         """
         
-        self.__next_increase_timestamp = int(response['nextIncreaseTimestamp']) if 'nextIncreaseTimestamp' in response.keys() and response['nextIncreaseTimestamp'] is not None else None
-        
         self.__item = Stamina(response['item']) if 'item' in response.keys() and response['item'] is not None else None
-
-    def get_next_increase_timestamp(self):
-        """
-        次にスタミナが回復する時間を取得
-        :return: 次にスタミナが回復する時間
-        :rtype: int
-        """
-        return self.__next_increase_timestamp
+        
+        self.__next_increase_timestamp = int(response['nextIncreaseTimestamp']) if 'nextIncreaseTimestamp' in response.keys() and response['nextIncreaseTimestamp'] is not None else None
 
     def get_item(self):
         """
@@ -46,6 +38,14 @@ class ConsumeStaminaResult(object):
         """
         return self.__item
 
+    def get_next_increase_timestamp(self):
+        """
+        次にスタミナが回復する時間を取得
+        :return: 次にスタミナが回復する時間
+        :rtype: int
+        """
+        return self.__next_increase_timestamp
+
     def to_dict(self):
         """
         辞書配列に変換
@@ -53,8 +53,8 @@ class ConsumeStaminaResult(object):
         :rtype: dict
         """
         return { 
-            'nextIncreaseTimestamp': self.__next_increase_timestamp,
-        
             'item': self.__item.to_dict(),
+        
+            'nextIncreaseTimestamp': self.__next_increase_timestamp,
         
         }
