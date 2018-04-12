@@ -53,7 +53,7 @@ class ConsumeStaminaRequest(Gs2UserRequest):
         :param stamina_pool_name: スタミナプールの名前を指定します。
         :type stamina_pool_name: unicode
         """
-        if not isinstance(stamina_pool_name, unicode):
+        if stamina_pool_name and not isinstance(stamina_pool_name, unicode):
             raise TypeError(type(stamina_pool_name))
         self.__stamina_pool_name = stamina_pool_name
 
@@ -82,7 +82,7 @@ class ConsumeStaminaRequest(Gs2UserRequest):
         :param variation: スタミナの増減量
         :type variation: int
         """
-        if not isinstance(variation, int):
+        if variation and not isinstance(variation, int):
             raise TypeError(type(variation))
         self.__variation = variation
 
@@ -111,7 +111,7 @@ class ConsumeStaminaRequest(Gs2UserRequest):
         :param max_value: スタミナの最大値
         :type max_value: int
         """
-        if not isinstance(max_value, int):
+        if max_value and not isinstance(max_value, int):
             raise TypeError(type(max_value))
         self.__max_value = max_value
 

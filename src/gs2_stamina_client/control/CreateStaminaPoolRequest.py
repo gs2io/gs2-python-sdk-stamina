@@ -81,7 +81,7 @@ class CreateStaminaPoolRequest(Gs2BasicRequest):
         :param name: スタミナプールの名前
         :type name: unicode
         """
-        if not isinstance(name, unicode):
+        if name and not isinstance(name, unicode):
             raise TypeError(type(name))
         self.__name = name
 
@@ -110,7 +110,7 @@ class CreateStaminaPoolRequest(Gs2BasicRequest):
         :param description: スタミナプールの説明
         :type description: unicode
         """
-        if not isinstance(description, unicode):
+        if description and not isinstance(description, unicode):
             raise TypeError(type(description))
         self.__description = description
 
@@ -139,7 +139,7 @@ class CreateStaminaPoolRequest(Gs2BasicRequest):
         :param service_class: スタミナプールのサービスクラス
         :type service_class: unicode
         """
-        if not isinstance(service_class, unicode):
+        if service_class and not isinstance(service_class, unicode):
             raise TypeError(type(service_class))
         self.__service_class = service_class
 
@@ -168,7 +168,7 @@ class CreateStaminaPoolRequest(Gs2BasicRequest):
         :param increase_interval: スタミナの回復速度(秒)
         :type increase_interval: int
         """
-        if not isinstance(increase_interval, int):
+        if increase_interval and not isinstance(increase_interval, int):
             raise TypeError(type(increase_interval))
         self.__increase_interval = increase_interval
 
@@ -197,7 +197,7 @@ class CreateStaminaPoolRequest(Gs2BasicRequest):
         :param consume_stamina_trigger_script: スタミナ消費時 に実行されるGS2-Script
         :type consume_stamina_trigger_script: unicode
         """
-        if not isinstance(consume_stamina_trigger_script, unicode):
+        if consume_stamina_trigger_script and not isinstance(consume_stamina_trigger_script, unicode):
             raise TypeError(type(consume_stamina_trigger_script))
         self.__consume_stamina_trigger_script = consume_stamina_trigger_script
 
@@ -226,7 +226,7 @@ class CreateStaminaPoolRequest(Gs2BasicRequest):
         :param consume_stamina_done_trigger_script: スタミナ消費完了時 に実行されるGS2-Script
         :type consume_stamina_done_trigger_script: unicode
         """
-        if not isinstance(consume_stamina_done_trigger_script, unicode):
+        if consume_stamina_done_trigger_script and not isinstance(consume_stamina_done_trigger_script, unicode):
             raise TypeError(type(consume_stamina_done_trigger_script))
         self.__consume_stamina_done_trigger_script = consume_stamina_done_trigger_script
 
@@ -255,7 +255,7 @@ class CreateStaminaPoolRequest(Gs2BasicRequest):
         :param add_stamina_trigger_script: スタミナ回復時 に実行されるGS2-Script
         :type add_stamina_trigger_script: unicode
         """
-        if not isinstance(add_stamina_trigger_script, unicode):
+        if add_stamina_trigger_script and not isinstance(add_stamina_trigger_script, unicode):
             raise TypeError(type(add_stamina_trigger_script))
         self.__add_stamina_trigger_script = add_stamina_trigger_script
 
@@ -284,7 +284,7 @@ class CreateStaminaPoolRequest(Gs2BasicRequest):
         :param add_stamina_done_trigger_script: スタミナ回復完了時 に実行されるGS2-Script
         :type add_stamina_done_trigger_script: unicode
         """
-        if not isinstance(add_stamina_done_trigger_script, unicode):
+        if add_stamina_done_trigger_script and not isinstance(add_stamina_done_trigger_script, unicode):
             raise TypeError(type(add_stamina_done_trigger_script))
         self.__add_stamina_done_trigger_script = add_stamina_done_trigger_script
 
@@ -313,7 +313,7 @@ class CreateStaminaPoolRequest(Gs2BasicRequest):
         :param get_max_stamina_trigger_script: スタミナの最大値取得 に実行されるGS2-Script
         :type get_max_stamina_trigger_script: unicode
         """
-        if not isinstance(get_max_stamina_trigger_script, unicode):
+        if get_max_stamina_trigger_script and not isinstance(get_max_stamina_trigger_script, unicode):
             raise TypeError(type(get_max_stamina_trigger_script))
         self.__get_max_stamina_trigger_script = get_max_stamina_trigger_script
 
