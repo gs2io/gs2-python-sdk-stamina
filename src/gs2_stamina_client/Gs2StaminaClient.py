@@ -14,8 +14,6 @@
 # express or implied. See the License for the specific language governing
 # permissions and limitations under the License.
 
-import json
-
 from gs2_core_client.Gs2Constant import Gs2Constant
 from gs2_core_client.AbstractGs2Client import AbstractGs2Client
 
@@ -33,83 +31,6 @@ class Gs2StaminaClient(AbstractGs2Client):
         :type region: str
         """
         super(Gs2StaminaClient, self).__init__(credential, region)
-
-
-    def change_stamina(self, request):
-        """
-        スタミナを増減します<br>
-        <br>
-        - 消費クオータ: 5<br>
-        <br>
-        :param request: リクエストパラメータ
-        :type request: gs2_stamina_client.control.ChangeStaminaRequest.ChangeStaminaRequest
-        :return: 結果
-        :rtype: gs2_stamina_client.control.ChangeStaminaResult.ChangeStaminaResult
-        """
-        body = { 
-            "variation": request.get_variation(),
-            "maxValue": request.get_max_value(),
-        }
-
-        if request.get_overflow() is not None:
-            body["overflow"] = request.get_overflow()
-        headers = { 
-            "X-GS2-ACCESS-TOKEN": request.get_access_token()
-        }
-        if request.get_request_id() is not None:
-            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
-        from gs2_stamina_client.control.ChangeStaminaRequest import ChangeStaminaRequest
-
-        from gs2_stamina_client.control.ChangeStaminaResult import ChangeStaminaResult
-        return ChangeStaminaResult(self._do_post_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/staminaPool/" + str(("null" if request.get_stamina_pool_name() is None or request.get_stamina_pool_name() == "" else request.get_stamina_pool_name())) + "/stamina",
-            service=self.ENDPOINT,
-            module=ChangeStaminaRequest.Constant.MODULE,
-            function=ChangeStaminaRequest.Constant.FUNCTION,
-            body=body,
-            headers=headers
-        ))
-
-
-
-
-    def consume_stamina(self, request):
-        """
-        スタミナを消費します。<br>
-        このエンドポイントは回復に使用できません。<br>
-        ポリシーで消費と回復を分けて管理したい場合に使用してください。<br>
-        <br>
-        - 消費クオータ: 5<br>
-        <br>
-        :param request: リクエストパラメータ
-        :type request: gs2_stamina_client.control.ConsumeStaminaRequest.ConsumeStaminaRequest
-        :return: 結果
-        :rtype: gs2_stamina_client.control.ConsumeStaminaResult.ConsumeStaminaResult
-        """
-        body = { 
-            "variation": request.get_variation(),
-            "maxValue": request.get_max_value(),
-        }
-
-        headers = { 
-            "X-GS2-ACCESS-TOKEN": request.get_access_token()
-        }
-        if request.get_request_id() is not None:
-            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
-        from gs2_stamina_client.control.ConsumeStaminaRequest import ConsumeStaminaRequest
-
-        from gs2_stamina_client.control.ConsumeStaminaResult import ConsumeStaminaResult
-        return ConsumeStaminaResult(self._do_post_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/staminaPool/" + str(("null" if request.get_stamina_pool_name() is None or request.get_stamina_pool_name() == "" else request.get_stamina_pool_name())) + "/stamina/consume",
-            service=self.ENDPOINT,
-            module=ConsumeStaminaRequest.Constant.MODULE,
-            function=ConsumeStaminaRequest.Constant.FUNCTION,
-            body=body,
-            headers=headers
-        ))
-
-
-
 
     def create_stamina_pool(self, request):
         """
@@ -143,18 +64,15 @@ class Gs2StaminaClient(AbstractGs2Client):
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_stamina_client.control.CreateStaminaPoolRequest import CreateStaminaPoolRequest
-
         from gs2_stamina_client.control.CreateStaminaPoolResult import CreateStaminaPoolResult
         return CreateStaminaPoolResult(self._do_post_request(
             url=Gs2Constant.ENDPOINT_HOST + "/staminaPool",
             service=self.ENDPOINT,
-            module=CreateStaminaPoolRequest.Constant.MODULE,
-            function=CreateStaminaPoolRequest.Constant.FUNCTION,
+            component=CreateStaminaPoolRequest.Constant.MODULE,
+            target_function=CreateStaminaPoolRequest.Constant.FUNCTION,
             body=body,
             headers=headers
         ))
-
-
 
     def delete_stamina_pool(self, request):
         """
@@ -162,41 +80,31 @@ class Gs2StaminaClient(AbstractGs2Client):
         <br>
         :param request: リクエストパラメータ
         :type request: gs2_stamina_client.control.DeleteStaminaPoolRequest.DeleteStaminaPoolRequest
-
         """
-
-        query_strings = {
-
-        }
+        query_strings = {}
         headers = { 
         }
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_stamina_client.control.DeleteStaminaPoolRequest import DeleteStaminaPoolRequest
-
         self._do_delete_request(
             url=Gs2Constant.ENDPOINT_HOST + "/staminaPool/" + str(("null" if request.get_stamina_pool_name() is None or request.get_stamina_pool_name() == "" else request.get_stamina_pool_name())) + "",
             service=self.ENDPOINT,
-            module=DeleteStaminaPoolRequest.Constant.MODULE,
-            function=DeleteStaminaPoolRequest.Constant.FUNCTION,
+            component=DeleteStaminaPoolRequest.Constant.MODULE,
+            target_function=DeleteStaminaPoolRequest.Constant.FUNCTION,
             query_strings=query_strings,
             headers=headers
         )
 
-
-
     def describe_service_class(self, request):
         """
         サービスクラスの一覧を取得します<br>
-        <br>
-        :param request: リクエストパラメータ
+        <br>:param request: リクエストパラメータ
         :type request: gs2_stamina_client.control.DescribeServiceClassRequest.DescribeServiceClassRequest
         :return: 結果
         :rtype: gs2_stamina_client.control.DescribeServiceClassResult.DescribeServiceClassResult
         """
-
         query_strings = {
-
         }
         headers = { 
         }
@@ -208,30 +116,23 @@ class Gs2StaminaClient(AbstractGs2Client):
         return DescribeServiceClassResult(self._do_get_request(
             url=Gs2Constant.ENDPOINT_HOST + "/staminaPool/serviceClass",
             service=self.ENDPOINT,
-            module=DescribeServiceClassRequest.Constant.MODULE,
-            function=DescribeServiceClassRequest.Constant.FUNCTION,
+            component=DescribeServiceClassRequest.Constant.MODULE,
+            target_function=DescribeServiceClassRequest.Constant.FUNCTION,
             query_strings=query_strings,
             headers=headers
         ))
 
-
-
     def describe_stamina_pool(self, request):
         """
         スタミナプールの一覧を取得します<br>
-        <br>
-        :param request: リクエストパラメータ
+        <br>:param request: リクエストパラメータ
         :type request: gs2_stamina_client.control.DescribeStaminaPoolRequest.DescribeStaminaPoolRequest
         :return: 結果
         :rtype: gs2_stamina_client.control.DescribeStaminaPoolResult.DescribeStaminaPoolResult
         """
-
         query_strings = {
-
             'pageToken': request.get_page_token(),
-
             'limit': request.get_limit(),
-
         }
         headers = { 
         }
@@ -243,62 +144,21 @@ class Gs2StaminaClient(AbstractGs2Client):
         return DescribeStaminaPoolResult(self._do_get_request(
             url=Gs2Constant.ENDPOINT_HOST + "/staminaPool",
             service=self.ENDPOINT,
-            module=DescribeStaminaPoolRequest.Constant.MODULE,
-            function=DescribeStaminaPoolRequest.Constant.FUNCTION,
+            component=DescribeStaminaPoolRequest.Constant.MODULE,
+            target_function=DescribeStaminaPoolRequest.Constant.FUNCTION,
             query_strings=query_strings,
             headers=headers
         ))
-
-
-
-    def get_stamina(self, request):
-        """
-        現在のスタミナ値を取得します<br>
-        <br>
-        - 消費クオータ: 3<br>
-        <br>
-        :param request: リクエストパラメータ
-        :type request: gs2_stamina_client.control.GetStaminaRequest.GetStaminaRequest
-        :return: 結果
-        :rtype: gs2_stamina_client.control.GetStaminaResult.GetStaminaResult
-        """
-
-        query_strings = {
-
-            'maxValue': request.get_max_value(),
-
-        }
-        headers = { 
-            "X-GS2-ACCESS-TOKEN": request.get_access_token()
-        }
-        if request.get_request_id() is not None:
-            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
-        from gs2_stamina_client.control.GetStaminaRequest import GetStaminaRequest
-
-        from gs2_stamina_client.control.GetStaminaResult import GetStaminaResult
-        return GetStaminaResult(self._do_get_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/staminaPool/" + str(("null" if request.get_stamina_pool_name() is None or request.get_stamina_pool_name() == "" else request.get_stamina_pool_name())) + "/stamina",
-            service=self.ENDPOINT,
-            module=GetStaminaRequest.Constant.MODULE,
-            function=GetStaminaRequest.Constant.FUNCTION,
-            query_strings=query_strings,
-            headers=headers
-        ))
-
-
 
     def get_stamina_pool(self, request):
         """
         スタミナプールを取得します<br>
-        <br>
-        :param request: リクエストパラメータ
+        <br>:param request: リクエストパラメータ
         :type request: gs2_stamina_client.control.GetStaminaPoolRequest.GetStaminaPoolRequest
         :return: 結果
         :rtype: gs2_stamina_client.control.GetStaminaPoolResult.GetStaminaPoolResult
         """
-
         query_strings = {
-
         }
         headers = { 
         }
@@ -310,26 +170,21 @@ class Gs2StaminaClient(AbstractGs2Client):
         return GetStaminaPoolResult(self._do_get_request(
             url=Gs2Constant.ENDPOINT_HOST + "/staminaPool/" + str(("null" if request.get_stamina_pool_name() is None or request.get_stamina_pool_name() == "" else request.get_stamina_pool_name())) + "",
             service=self.ENDPOINT,
-            module=GetStaminaPoolRequest.Constant.MODULE,
-            function=GetStaminaPoolRequest.Constant.FUNCTION,
+            component=GetStaminaPoolRequest.Constant.MODULE,
+            target_function=GetStaminaPoolRequest.Constant.FUNCTION,
             query_strings=query_strings,
             headers=headers
         ))
 
-
-
     def get_stamina_pool_status(self, request):
         """
         スタミナプールの状態を取得します<br>
-        <br>
-        :param request: リクエストパラメータ
+        <br>:param request: リクエストパラメータ
         :type request: gs2_stamina_client.control.GetStaminaPoolStatusRequest.GetStaminaPoolStatusRequest
         :return: 結果
         :rtype: gs2_stamina_client.control.GetStaminaPoolStatusResult.GetStaminaPoolStatusResult
         """
-
         query_strings = {
-
         }
         headers = { 
         }
@@ -341,13 +196,11 @@ class Gs2StaminaClient(AbstractGs2Client):
         return GetStaminaPoolStatusResult(self._do_get_request(
             url=Gs2Constant.ENDPOINT_HOST + "/staminaPool/" + str(("null" if request.get_stamina_pool_name() is None or request.get_stamina_pool_name() == "" else request.get_stamina_pool_name())) + "/status",
             service=self.ENDPOINT,
-            module=GetStaminaPoolStatusRequest.Constant.MODULE,
-            function=GetStaminaPoolStatusRequest.Constant.FUNCTION,
+            component=GetStaminaPoolStatusRequest.Constant.MODULE,
+            target_function=GetStaminaPoolStatusRequest.Constant.FUNCTION,
             query_strings=query_strings,
             headers=headers
         ))
-
-
 
     def update_stamina_pool(self, request):
         """
@@ -362,7 +215,6 @@ class Gs2StaminaClient(AbstractGs2Client):
             "serviceClass": request.get_service_class(),
             "increaseInterval": request.get_increase_interval(),
         }
-
         if request.get_description() is not None:
             body["description"] = request.get_description()
         if request.get_consume_stamina_trigger_script() is not None:
@@ -380,15 +232,110 @@ class Gs2StaminaClient(AbstractGs2Client):
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_stamina_client.control.UpdateStaminaPoolRequest import UpdateStaminaPoolRequest
-
         from gs2_stamina_client.control.UpdateStaminaPoolResult import UpdateStaminaPoolResult
         return UpdateStaminaPoolResult(self._do_put_request(
             url=Gs2Constant.ENDPOINT_HOST + "/staminaPool/" + str(("null" if request.get_stamina_pool_name() is None or request.get_stamina_pool_name() == "" else request.get_stamina_pool_name())) + "",
             service=self.ENDPOINT,
-            module=UpdateStaminaPoolRequest.Constant.MODULE,
-            function=UpdateStaminaPoolRequest.Constant.FUNCTION,
+            component=UpdateStaminaPoolRequest.Constant.MODULE,
+            target_function=UpdateStaminaPoolRequest.Constant.FUNCTION,
             body=body,
             headers=headers
         ))
 
+    def change_stamina(self, request):
+        """
+        スタミナを増減します<br>
+        <br>
+        - 消費クオータ: 5<br>
+        <br>
+        :param request: リクエストパラメータ
+        :type request: gs2_stamina_client.control.ChangeStaminaRequest.ChangeStaminaRequest
+        :return: 結果
+        :rtype: gs2_stamina_client.control.ChangeStaminaResult.ChangeStaminaResult
+        """
+        body = { 
+            "variation": request.get_variation(),
+            "maxValue": request.get_max_value(),
+        }
 
+        if request.get_overflow() is not None:
+            body["overflow"] = request.get_overflow()
+        headers = { 
+            "X-GS2-ACCESS-TOKEN": request.get_access_token()
+        }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
+        from gs2_stamina_client.control.ChangeStaminaRequest import ChangeStaminaRequest
+        from gs2_stamina_client.control.ChangeStaminaResult import ChangeStaminaResult
+        return ChangeStaminaResult(self._do_post_request(
+            url=Gs2Constant.ENDPOINT_HOST + "/staminaPool/" + str(("null" if request.get_stamina_pool_name() is None or request.get_stamina_pool_name() == "" else request.get_stamina_pool_name())) + "/stamina",
+            service=self.ENDPOINT,
+            component=ChangeStaminaRequest.Constant.MODULE,
+            target_function=ChangeStaminaRequest.Constant.FUNCTION,
+            body=body,
+            headers=headers
+        ))
+
+    def consume_stamina(self, request):
+        """
+        スタミナを消費します。<br>
+        このエンドポイントは回復に使用できません。<br>
+        ポリシーで消費と回復を分けて管理したい場合に使用してください。<br>
+        <br>
+        - 消費クオータ: 5<br>
+        <br>
+        :param request: リクエストパラメータ
+        :type request: gs2_stamina_client.control.ConsumeStaminaRequest.ConsumeStaminaRequest
+        :return: 結果
+        :rtype: gs2_stamina_client.control.ConsumeStaminaResult.ConsumeStaminaResult
+        """
+        body = { 
+            "variation": request.get_variation(),
+            "maxValue": request.get_max_value(),
+        }
+
+        headers = { 
+            "X-GS2-ACCESS-TOKEN": request.get_access_token()
+        }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
+        from gs2_stamina_client.control.ConsumeStaminaRequest import ConsumeStaminaRequest
+        from gs2_stamina_client.control.ConsumeStaminaResult import ConsumeStaminaResult
+        return ConsumeStaminaResult(self._do_post_request(
+            url=Gs2Constant.ENDPOINT_HOST + "/staminaPool/" + str(("null" if request.get_stamina_pool_name() is None or request.get_stamina_pool_name() == "" else request.get_stamina_pool_name())) + "/stamina/consume",
+            service=self.ENDPOINT,
+            component=ConsumeStaminaRequest.Constant.MODULE,
+            target_function=ConsumeStaminaRequest.Constant.FUNCTION,
+            body=body,
+            headers=headers
+        ))
+
+    def get_stamina(self, request):
+        """
+        現在のスタミナ値を取得します<br>
+        <br>
+        - 消費クオータ: 3<br>
+        <br>:param request: リクエストパラメータ
+        :type request: gs2_stamina_client.control.GetStaminaRequest.GetStaminaRequest
+        :return: 結果
+        :rtype: gs2_stamina_client.control.GetStaminaResult.GetStaminaResult
+        """
+        query_strings = {
+            'maxValue': request.get_max_value(),
+        }
+        headers = { 
+            "X-GS2-ACCESS-TOKEN": request.get_access_token()
+        }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
+        from gs2_stamina_client.control.GetStaminaRequest import GetStaminaRequest
+
+        from gs2_stamina_client.control.GetStaminaResult import GetStaminaResult
+        return GetStaminaResult(self._do_get_request(
+            url=Gs2Constant.ENDPOINT_HOST + "/staminaPool/" + str(("null" if request.get_stamina_pool_name() is None or request.get_stamina_pool_name() == "" else request.get_stamina_pool_name())) + "/stamina",
+            service=self.ENDPOINT,
+            component=GetStaminaRequest.Constant.MODULE,
+            target_function=GetStaminaRequest.Constant.FUNCTION,
+            query_strings=query_strings,
+            headers=headers
+        ))

@@ -14,6 +14,7 @@
 # express or implied. See the License for the specific language governing
 # permissions and limitations under the License.
 
+
 class StaminaPool(object):
 
     def __init__(self, params=None):
@@ -45,7 +46,6 @@ class StaminaPool(object):
             self.set_get_max_stamina_trigger_script(params['getMaxStaminaTriggerScript'] if 'getMaxStaminaTriggerScript' in params.keys() else None)
             self.set_create_at(params['createAt'] if 'createAt' in params.keys() else None)
             self.set_update_at(params['updateAt'] if 'updateAt' in params.keys() else None)
-
 
     def get_stamina_pool_id(self):
         """
@@ -256,7 +256,7 @@ class StaminaPool(object):
         self.__update_at = update_at
 
     def to_dict(self):
-        return { 
+        return {
             "staminaPoolId": self.__stamina_pool_id,
             "ownerId": self.__owner_id,
             "name": self.__name,

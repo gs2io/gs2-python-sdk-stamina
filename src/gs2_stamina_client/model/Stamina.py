@@ -14,6 +14,7 @@
 # express or implied. See the License for the specific language governing
 # permissions and limitations under the License.
 
+
 class Stamina(object):
 
     def __init__(self, params=None):
@@ -27,7 +28,6 @@ class Stamina(object):
             self.set_value(params['value'] if 'value' in params.keys() else None)
             self.set_overflow(params['overflow'] if 'overflow' in params.keys() else None)
             self.set_last_update_at(params['lastUpdateAt'] if 'lastUpdateAt' in params.keys() else None)
-
 
     def get_user_id(self):
         """
@@ -94,7 +94,7 @@ class Stamina(object):
         self.__last_update_at = last_update_at
 
     def to_dict(self):
-        return { 
+        return {
             "userId": self.__user_id,
             "value": self.__value,
             "overflow": self.__overflow,

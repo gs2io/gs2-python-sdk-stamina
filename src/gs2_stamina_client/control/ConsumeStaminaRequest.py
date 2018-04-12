@@ -70,16 +70,16 @@ class ConsumeStaminaRequest(Gs2UserRequest):
 
     def get_variation(self):
         """
-        スタミナの消費量を取得
-        :return: スタミナの消費量
+        スタミナの増減量を取得
+        :return: スタミナの増減量
         :rtype: int
         """
         return self.__variation
 
     def set_variation(self, variation):
         """
-        スタミナの消費量を設定
-        :param variation: スタミナの消費量
+        スタミナの増減量を設定
+        :param variation: スタミナの増減量
         :type variation: int
         """
         if not isinstance(variation, int):
@@ -88,8 +88,8 @@ class ConsumeStaminaRequest(Gs2UserRequest):
 
     def with_variation(self, variation):
         """
-        スタミナの消費量を設定
-        :param variation: スタミナの消費量
+        スタミナの増減量を設定
+        :param variation: スタミナの増減量
         :type variation: int
         :return: this
         :rtype: ConsumeStaminaRequest

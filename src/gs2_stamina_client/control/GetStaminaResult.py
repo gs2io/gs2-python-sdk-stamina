@@ -25,9 +25,7 @@ class GetStaminaResult(object):
         :type response: レスポンスボディ
         :type response: dict
         """
-        
         self.__item = Stamina(response['item']) if 'item' in response.keys() and response['item'] is not None else None
-        
         self.__next_increase_timestamp = int(response['nextIncreaseTimestamp']) if 'nextIncreaseTimestamp' in response.keys() and response['nextIncreaseTimestamp'] is not None else None
 
     def get_item(self):
@@ -52,9 +50,7 @@ class GetStaminaResult(object):
         :return: 辞書配列
         :rtype: dict
         """
-        return { 
+        return {
             'item': self.__item.to_dict(),
-        
             'nextIncreaseTimestamp': self.__next_increase_timestamp,
-        
         }
