@@ -51,7 +51,7 @@ class GetStaminaRequest(Gs2UserRequest):
         :param stamina_pool_name: スタミナプールの名前を指定します。
         :type stamina_pool_name: unicode
         """
-        if stamina_pool_name and not isinstance(stamina_pool_name, unicode):
+        if _stamina_pool_name and not (isinstance(_stamina_pool_name, str) or isinstance(_stamina_pool_name, unicode)):
             raise TypeError(type(stamina_pool_name))
         self.__stamina_pool_name = stamina_pool_name
 
@@ -80,7 +80,7 @@ class GetStaminaRequest(Gs2UserRequest):
         :param max_value: スタミナの最大値を指定します
         :type max_value: int
         """
-        if max_value and not isinstance(max_value, int):
+        if _max_value and not isinstance(_max_value, int):
             raise TypeError(type(max_value))
         self.__max_value = max_value
 

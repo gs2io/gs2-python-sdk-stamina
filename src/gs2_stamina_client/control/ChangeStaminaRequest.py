@@ -55,7 +55,7 @@ class ChangeStaminaRequest(Gs2UserRequest):
         :param stamina_pool_name: スタミナプールの名前を指定します。
         :type stamina_pool_name: unicode
         """
-        if stamina_pool_name and not isinstance(stamina_pool_name, unicode):
+        if _stamina_pool_name and not (isinstance(_stamina_pool_name, str) or isinstance(_stamina_pool_name, unicode)):
             raise TypeError(type(stamina_pool_name))
         self.__stamina_pool_name = stamina_pool_name
 
@@ -84,7 +84,7 @@ class ChangeStaminaRequest(Gs2UserRequest):
         :param variation: スタミナの増減量
         :type variation: int
         """
-        if variation and not isinstance(variation, int):
+        if _variation and not isinstance(_variation, int):
             raise TypeError(type(variation))
         self.__variation = variation
 
@@ -113,7 +113,7 @@ class ChangeStaminaRequest(Gs2UserRequest):
         :param max_value: スタミナの最大値
         :type max_value: int
         """
-        if max_value and not isinstance(max_value, int):
+        if _max_value and not isinstance(_max_value, int):
             raise TypeError(type(max_value))
         self.__max_value = max_value
 
@@ -142,7 +142,7 @@ class ChangeStaminaRequest(Gs2UserRequest):
         :param overflow: スタミナを回復する際に最大値を超えて回復するか
         :type overflow: bool
         """
-        if overflow and not isinstance(overflow, bool):
+        if _overflow and not isinstance(_overflow, bool):
             raise TypeError(type(overflow))
         self.__overflow = overflow
 
