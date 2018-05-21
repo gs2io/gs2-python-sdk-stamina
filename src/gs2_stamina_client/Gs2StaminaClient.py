@@ -16,6 +16,7 @@
 
 from gs2_core_client.Gs2Constant import Gs2Constant
 from gs2_core_client.AbstractGs2Client import AbstractGs2Client
+from aws_sdk_for_serverless.common import url_encoder
 
 
 class Gs2StaminaClient(AbstractGs2Client):
@@ -88,7 +89,7 @@ class Gs2StaminaClient(AbstractGs2Client):
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_stamina_client.control.DeleteStaminaPoolRequest import DeleteStaminaPoolRequest
         self._do_delete_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/staminaPool/" + str(("null" if request.get_stamina_pool_name() is None or request.get_stamina_pool_name() == "" else request.get_stamina_pool_name())) + "",
+            url=Gs2Constant.ENDPOINT_HOST + "/staminaPool/" + str(("null" if request.get_stamina_pool_name() is None or request.get_stamina_pool_name() == "" else url_encoder.encode(request.get_stamina_pool_name()))) + "",
             service=self.ENDPOINT,
             component=DeleteStaminaPoolRequest.Constant.MODULE,
             target_function=DeleteStaminaPoolRequest.Constant.FUNCTION,
@@ -168,7 +169,7 @@ class Gs2StaminaClient(AbstractGs2Client):
 
         from gs2_stamina_client.control.GetStaminaPoolResult import GetStaminaPoolResult
         return GetStaminaPoolResult(self._do_get_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/staminaPool/" + str(("null" if request.get_stamina_pool_name() is None or request.get_stamina_pool_name() == "" else request.get_stamina_pool_name())) + "",
+            url=Gs2Constant.ENDPOINT_HOST + "/staminaPool/" + str(("null" if request.get_stamina_pool_name() is None or request.get_stamina_pool_name() == "" else url_encoder.encode(request.get_stamina_pool_name()))) + "",
             service=self.ENDPOINT,
             component=GetStaminaPoolRequest.Constant.MODULE,
             target_function=GetStaminaPoolRequest.Constant.FUNCTION,
@@ -194,7 +195,7 @@ class Gs2StaminaClient(AbstractGs2Client):
 
         from gs2_stamina_client.control.GetStaminaPoolStatusResult import GetStaminaPoolStatusResult
         return GetStaminaPoolStatusResult(self._do_get_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/staminaPool/" + str(("null" if request.get_stamina_pool_name() is None or request.get_stamina_pool_name() == "" else request.get_stamina_pool_name())) + "/status",
+            url=Gs2Constant.ENDPOINT_HOST + "/staminaPool/" + str(("null" if request.get_stamina_pool_name() is None or request.get_stamina_pool_name() == "" else url_encoder.encode(request.get_stamina_pool_name()))) + "/status",
             service=self.ENDPOINT,
             component=GetStaminaPoolStatusRequest.Constant.MODULE,
             target_function=GetStaminaPoolStatusRequest.Constant.FUNCTION,
@@ -234,7 +235,7 @@ class Gs2StaminaClient(AbstractGs2Client):
         from gs2_stamina_client.control.UpdateStaminaPoolRequest import UpdateStaminaPoolRequest
         from gs2_stamina_client.control.UpdateStaminaPoolResult import UpdateStaminaPoolResult
         return UpdateStaminaPoolResult(self._do_put_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/staminaPool/" + str(("null" if request.get_stamina_pool_name() is None or request.get_stamina_pool_name() == "" else request.get_stamina_pool_name())) + "",
+            url=Gs2Constant.ENDPOINT_HOST + "/staminaPool/" + str(("null" if request.get_stamina_pool_name() is None or request.get_stamina_pool_name() == "" else url_encoder.encode(request.get_stamina_pool_name()))) + "",
             service=self.ENDPOINT,
             component=UpdateStaminaPoolRequest.Constant.MODULE,
             target_function=UpdateStaminaPoolRequest.Constant.FUNCTION,
@@ -268,7 +269,7 @@ class Gs2StaminaClient(AbstractGs2Client):
         from gs2_stamina_client.control.ChangeStaminaRequest import ChangeStaminaRequest
         from gs2_stamina_client.control.ChangeStaminaResult import ChangeStaminaResult
         return ChangeStaminaResult(self._do_post_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/staminaPool/" + str(("null" if request.get_stamina_pool_name() is None or request.get_stamina_pool_name() == "" else request.get_stamina_pool_name())) + "/stamina",
+            url=Gs2Constant.ENDPOINT_HOST + "/staminaPool/" + str(("null" if request.get_stamina_pool_name() is None or request.get_stamina_pool_name() == "" else url_encoder.encode(request.get_stamina_pool_name()))) + "/stamina",
             service=self.ENDPOINT,
             component=ChangeStaminaRequest.Constant.MODULE,
             target_function=ChangeStaminaRequest.Constant.FUNCTION,
@@ -302,7 +303,7 @@ class Gs2StaminaClient(AbstractGs2Client):
         from gs2_stamina_client.control.ConsumeStaminaRequest import ConsumeStaminaRequest
         from gs2_stamina_client.control.ConsumeStaminaResult import ConsumeStaminaResult
         return ConsumeStaminaResult(self._do_post_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/staminaPool/" + str(("null" if request.get_stamina_pool_name() is None or request.get_stamina_pool_name() == "" else request.get_stamina_pool_name())) + "/stamina/consume",
+            url=Gs2Constant.ENDPOINT_HOST + "/staminaPool/" + str(("null" if request.get_stamina_pool_name() is None or request.get_stamina_pool_name() == "" else url_encoder.encode(request.get_stamina_pool_name()))) + "/stamina/consume",
             service=self.ENDPOINT,
             component=ConsumeStaminaRequest.Constant.MODULE,
             target_function=ConsumeStaminaRequest.Constant.FUNCTION,
@@ -332,7 +333,7 @@ class Gs2StaminaClient(AbstractGs2Client):
 
         from gs2_stamina_client.control.GetStaminaResult import GetStaminaResult
         return GetStaminaResult(self._do_get_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/staminaPool/" + str(("null" if request.get_stamina_pool_name() is None or request.get_stamina_pool_name() == "" else request.get_stamina_pool_name())) + "/stamina",
+            url=Gs2Constant.ENDPOINT_HOST + "/staminaPool/" + str(("null" if request.get_stamina_pool_name() is None or request.get_stamina_pool_name() == "" else url_encoder.encode(request.get_stamina_pool_name()))) + "/stamina",
             service=self.ENDPOINT,
             component=GetStaminaRequest.Constant.MODULE,
             target_function=GetStaminaRequest.Constant.FUNCTION,
