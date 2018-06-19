@@ -27,7 +27,6 @@ class GetStaminaResult(object):
         """
         self.__item = Stamina(response['item']) if 'item' in response.keys() and response['item'] is not None else None
         self.__next_increase_timestamp = int(response['nextIncreaseTimestamp']) if 'nextIncreaseTimestamp' in response.keys() and response['nextIncreaseTimestamp'] is not None else None
-
     def get_item(self):
         """
         スタミナを取得
@@ -35,7 +34,6 @@ class GetStaminaResult(object):
         :rtype: Stamina
         """
         return self.__item
-
     def get_next_increase_timestamp(self):
         """
         次にスタミナが回復する時間を取得
@@ -43,6 +41,12 @@ class GetStaminaResult(object):
         :rtype: int
         """
         return self.__next_increase_timestamp
+
+    def __getitem__(self, key):
+        items = self.to_dict()
+        if key in items.keys():
+            return items[key]
+        return super(GetStaminaResult, self).__getitem__(key)
 
     def to_dict(self):
         """

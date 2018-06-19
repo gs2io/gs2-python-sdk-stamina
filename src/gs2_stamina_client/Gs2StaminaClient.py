@@ -277,6 +277,40 @@ class Gs2StaminaClient(AbstractGs2Client):
             headers=headers
         ))
 
+    def change_stamina_by_stamp_sheet(self, request):
+        """
+        スタンプシートを使用してスタミナを増減します<br>
+        <br>
+        - 消費クオータ: 5<br>
+        <br>
+        :param request: リクエストパラメータ
+        :type request: gs2_stamina_client.control.ChangeStaminaByStampSheetRequest.ChangeStaminaByStampSheetRequest
+        :return: 結果
+        :rtype: gs2_stamina_client.control.ChangeStaminaByStampSheetResult.ChangeStaminaByStampSheetResult
+        """
+        body = { 
+            "sheet": request.get_sheet(),
+            "keyName": request.get_key_name(),
+        }
+
+        if request.get_max_value() is not None:
+            body["maxValue"] = request.get_max_value()
+        headers = { 
+            "X-GS2-ACCESS-TOKEN": request.get_access_token()
+        }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
+        from gs2_stamina_client.control.ChangeStaminaByStampSheetRequest import ChangeStaminaByStampSheetRequest
+        from gs2_stamina_client.control.ChangeStaminaByStampSheetResult import ChangeStaminaByStampSheetResult
+        return ChangeStaminaByStampSheetResult(self._do_post_request(
+            url=Gs2Constant.ENDPOINT_HOST + "/stamina",
+            service=self.ENDPOINT,
+            component=ChangeStaminaByStampSheetRequest.Constant.MODULE,
+            target_function=ChangeStaminaByStampSheetRequest.Constant.FUNCTION,
+            body=body,
+            headers=headers
+        ))
+
     def consume_stamina(self, request):
         """
         スタミナを消費します。<br>
@@ -307,6 +341,40 @@ class Gs2StaminaClient(AbstractGs2Client):
             service=self.ENDPOINT,
             component=ConsumeStaminaRequest.Constant.MODULE,
             target_function=ConsumeStaminaRequest.Constant.FUNCTION,
+            body=body,
+            headers=headers
+        ))
+
+    def consume_stamina_by_stamp_task(self, request):
+        """
+        スタンプタスクを使用してスタミナを消費します。<br>
+        <br>
+        - 消費クオータ: 5<br>
+        <br>
+        :param request: リクエストパラメータ
+        :type request: gs2_stamina_client.control.ConsumeStaminaByStampTaskRequest.ConsumeStaminaByStampTaskRequest
+        :return: 結果
+        :rtype: gs2_stamina_client.control.ConsumeStaminaByStampTaskResult.ConsumeStaminaByStampTaskResult
+        """
+        body = { 
+            "task": request.get_task(),
+            "keyName": request.get_key_name(),
+            "transactionId": request.get_transaction_id(),
+            "maxValue": request.get_max_value(),
+        }
+
+        headers = { 
+            "X-GS2-ACCESS-TOKEN": request.get_access_token()
+        }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
+        from gs2_stamina_client.control.ConsumeStaminaByStampTaskRequest import ConsumeStaminaByStampTaskRequest
+        from gs2_stamina_client.control.ConsumeStaminaByStampTaskResult import ConsumeStaminaByStampTaskResult
+        return ConsumeStaminaByStampTaskResult(self._do_post_request(
+            url=Gs2Constant.ENDPOINT_HOST + "/stamina/consume",
+            service=self.ENDPOINT,
+            component=ConsumeStaminaByStampTaskRequest.Constant.MODULE,
+            target_function=ConsumeStaminaByStampTaskRequest.Constant.FUNCTION,
             body=body,
             headers=headers
         ))
