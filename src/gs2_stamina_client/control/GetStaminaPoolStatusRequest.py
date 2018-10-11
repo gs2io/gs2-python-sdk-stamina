@@ -49,7 +49,7 @@ class GetStaminaPoolStatusRequest(Gs2BasicRequest):
         :param stamina_pool_name: スタミナプールの名前を指定します。
         :type stamina_pool_name: unicode
         """
-        if stamina_pool_name and not (isinstance(stamina_pool_name, str) or isinstance(stamina_pool_name, unicode)):
+        if stamina_pool_name is not None and not (isinstance(stamina_pool_name, str) or isinstance(stamina_pool_name, unicode)):
             raise TypeError(type(stamina_pool_name))
         self.__stamina_pool_name = stamina_pool_name
 

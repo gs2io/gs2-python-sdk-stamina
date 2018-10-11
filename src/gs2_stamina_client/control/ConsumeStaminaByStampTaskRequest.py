@@ -55,7 +55,7 @@ class ConsumeStaminaByStampTaskRequest(Gs2UserRequest):
         :param task: スタンプタスク
         :type task: unicode
         """
-        if task and not (isinstance(task, str) or isinstance(task, unicode)):
+        if task is not None and not (isinstance(task, str) or isinstance(task, unicode)):
             raise TypeError(type(task))
         self.__task = task
 
@@ -84,7 +84,7 @@ class ConsumeStaminaByStampTaskRequest(Gs2UserRequest):
         :param key_name: スタンプの暗号鍵
         :type key_name: unicode
         """
-        if key_name and not (isinstance(key_name, str) or isinstance(key_name, unicode)):
+        if key_name is not None and not (isinstance(key_name, str) or isinstance(key_name, unicode)):
             raise TypeError(type(key_name))
         self.__key_name = key_name
 
@@ -113,7 +113,7 @@ class ConsumeStaminaByStampTaskRequest(Gs2UserRequest):
         :param transaction_id: トランザクションID
         :type transaction_id: unicode
         """
-        if transaction_id and not (isinstance(transaction_id, str) or isinstance(transaction_id, unicode)):
+        if transaction_id is not None and not (isinstance(transaction_id, str) or isinstance(transaction_id, unicode)):
             raise TypeError(type(transaction_id))
         self.__transaction_id = transaction_id
 
@@ -142,7 +142,7 @@ class ConsumeStaminaByStampTaskRequest(Gs2UserRequest):
         :param max_value: スタミナの最大値
         :type max_value: int
         """
-        if max_value and not isinstance(max_value, int):
+        if max_value is not None and not isinstance(max_value, int):
             raise TypeError(type(max_value))
         self.__max_value = max_value
 

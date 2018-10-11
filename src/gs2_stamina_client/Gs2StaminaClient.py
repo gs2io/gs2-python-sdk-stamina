@@ -60,8 +60,7 @@ class Gs2StaminaClient(AbstractGs2Client):
             body["addStaminaDoneTriggerScript"] = request.get_add_stamina_done_trigger_script()
         if request.get_get_max_stamina_trigger_script() is not None:
             body["getMaxStaminaTriggerScript"] = request.get_get_max_stamina_trigger_script()
-        headers = { 
-        }
+        headers = {}
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_stamina_client.control.CreateStaminaPoolRequest import CreateStaminaPoolRequest
@@ -83,13 +82,12 @@ class Gs2StaminaClient(AbstractGs2Client):
         :type request: gs2_stamina_client.control.DeleteStaminaPoolRequest.DeleteStaminaPoolRequest
         """
         query_strings = {}
-        headers = { 
-        }
+        headers = {}
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_stamina_client.control.DeleteStaminaPoolRequest import DeleteStaminaPoolRequest
         self._do_delete_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/staminaPool/" + str(("null" if request.get_stamina_pool_name() is None or request.get_stamina_pool_name() == "" else url_encoder.encode(request.get_stamina_pool_name()))) + "",
+            url=Gs2Constant.ENDPOINT_HOST + "/staminaPool/" + str(("null" if request.get_stamina_pool_name() is None or request.get_stamina_pool_name() == "" else request.get_stamina_pool_name())) + "",
             service=self.ENDPOINT,
             component=DeleteStaminaPoolRequest.Constant.MODULE,
             target_function=DeleteStaminaPoolRequest.Constant.FUNCTION,
@@ -105,10 +103,8 @@ class Gs2StaminaClient(AbstractGs2Client):
         :return: 結果
         :rtype: gs2_stamina_client.control.DescribeServiceClassResult.DescribeServiceClassResult
         """
-        query_strings = {
-        }
-        headers = { 
-        }
+        query_strings = {}
+        headers = {}
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_stamina_client.control.DescribeServiceClassRequest import DescribeServiceClassRequest
@@ -131,12 +127,12 @@ class Gs2StaminaClient(AbstractGs2Client):
         :return: 結果
         :rtype: gs2_stamina_client.control.DescribeStaminaPoolResult.DescribeStaminaPoolResult
         """
-        query_strings = {
-            'pageToken': request.get_page_token(),
-            'limit': request.get_limit(),
-        }
-        headers = { 
-        }
+        query_strings = {}
+        if request.get_page_token() is not None:
+            query_strings['pageToken'] = request.get_page_token()
+        if request.get_limit() is not None:
+            query_strings['limit'] = request.get_limit()
+        headers = {}
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_stamina_client.control.DescribeStaminaPoolRequest import DescribeStaminaPoolRequest
@@ -159,17 +155,15 @@ class Gs2StaminaClient(AbstractGs2Client):
         :return: 結果
         :rtype: gs2_stamina_client.control.GetStaminaPoolResult.GetStaminaPoolResult
         """
-        query_strings = {
-        }
-        headers = { 
-        }
+        query_strings = {}
+        headers = {}
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_stamina_client.control.GetStaminaPoolRequest import GetStaminaPoolRequest
 
         from gs2_stamina_client.control.GetStaminaPoolResult import GetStaminaPoolResult
         return GetStaminaPoolResult(self._do_get_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/staminaPool/" + str(("null" if request.get_stamina_pool_name() is None or request.get_stamina_pool_name() == "" else url_encoder.encode(request.get_stamina_pool_name()))) + "",
+            url=Gs2Constant.ENDPOINT_HOST + "/staminaPool/" + str(("null" if request.get_stamina_pool_name() is None or request.get_stamina_pool_name() == "" else request.get_stamina_pool_name())) + "",
             service=self.ENDPOINT,
             component=GetStaminaPoolRequest.Constant.MODULE,
             target_function=GetStaminaPoolRequest.Constant.FUNCTION,
@@ -185,17 +179,15 @@ class Gs2StaminaClient(AbstractGs2Client):
         :return: 結果
         :rtype: gs2_stamina_client.control.GetStaminaPoolStatusResult.GetStaminaPoolStatusResult
         """
-        query_strings = {
-        }
-        headers = { 
-        }
+        query_strings = {}
+        headers = {}
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_stamina_client.control.GetStaminaPoolStatusRequest import GetStaminaPoolStatusRequest
 
         from gs2_stamina_client.control.GetStaminaPoolStatusResult import GetStaminaPoolStatusResult
         return GetStaminaPoolStatusResult(self._do_get_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/staminaPool/" + str(("null" if request.get_stamina_pool_name() is None or request.get_stamina_pool_name() == "" else url_encoder.encode(request.get_stamina_pool_name()))) + "/status",
+            url=Gs2Constant.ENDPOINT_HOST + "/staminaPool/" + str(("null" if request.get_stamina_pool_name() is None or request.get_stamina_pool_name() == "" else request.get_stamina_pool_name())) + "/status",
             service=self.ENDPOINT,
             component=GetStaminaPoolStatusRequest.Constant.MODULE,
             target_function=GetStaminaPoolStatusRequest.Constant.FUNCTION,
@@ -228,14 +220,13 @@ class Gs2StaminaClient(AbstractGs2Client):
             body["addStaminaDoneTriggerScript"] = request.get_add_stamina_done_trigger_script()
         if request.get_get_max_stamina_trigger_script() is not None:
             body["getMaxStaminaTriggerScript"] = request.get_get_max_stamina_trigger_script()
-        headers = { 
-        }
+        headers = {}
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_stamina_client.control.UpdateStaminaPoolRequest import UpdateStaminaPoolRequest
         from gs2_stamina_client.control.UpdateStaminaPoolResult import UpdateStaminaPoolResult
         return UpdateStaminaPoolResult(self._do_put_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/staminaPool/" + str(("null" if request.get_stamina_pool_name() is None or request.get_stamina_pool_name() == "" else url_encoder.encode(request.get_stamina_pool_name()))) + "",
+            url=Gs2Constant.ENDPOINT_HOST + "/staminaPool/" + str(("null" if request.get_stamina_pool_name() is None or request.get_stamina_pool_name() == "" else request.get_stamina_pool_name())) + "",
             service=self.ENDPOINT,
             component=UpdateStaminaPoolRequest.Constant.MODULE,
             target_function=UpdateStaminaPoolRequest.Constant.FUNCTION,
@@ -261,15 +252,15 @@ class Gs2StaminaClient(AbstractGs2Client):
 
         if request.get_overflow() is not None:
             body["overflow"] = request.get_overflow()
-        headers = { 
-            "X-GS2-ACCESS-TOKEN": request.get_access_token()
-        }
+        headers = {}
+        if request.get_access_token() is not None:
+            headers["X-GS2-ACCESS-TOKEN"] = request.get_access_token()
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_stamina_client.control.ChangeStaminaRequest import ChangeStaminaRequest
         from gs2_stamina_client.control.ChangeStaminaResult import ChangeStaminaResult
         return ChangeStaminaResult(self._do_post_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/staminaPool/" + str(("null" if request.get_stamina_pool_name() is None or request.get_stamina_pool_name() == "" else url_encoder.encode(request.get_stamina_pool_name()))) + "/stamina",
+            url=Gs2Constant.ENDPOINT_HOST + "/staminaPool/" + str(("null" if request.get_stamina_pool_name() is None or request.get_stamina_pool_name() == "" else request.get_stamina_pool_name())) + "/stamina",
             service=self.ENDPOINT,
             component=ChangeStaminaRequest.Constant.MODULE,
             target_function=ChangeStaminaRequest.Constant.FUNCTION,
@@ -295,9 +286,9 @@ class Gs2StaminaClient(AbstractGs2Client):
 
         if request.get_max_value() is not None:
             body["maxValue"] = request.get_max_value()
-        headers = { 
-            "X-GS2-ACCESS-TOKEN": request.get_access_token()
-        }
+        headers = {}
+        if request.get_access_token() is not None:
+            headers["X-GS2-ACCESS-TOKEN"] = request.get_access_token()
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_stamina_client.control.ChangeStaminaByStampSheetRequest import ChangeStaminaByStampSheetRequest
@@ -329,15 +320,15 @@ class Gs2StaminaClient(AbstractGs2Client):
             "maxValue": request.get_max_value(),
         }
 
-        headers = { 
-            "X-GS2-ACCESS-TOKEN": request.get_access_token()
-        }
+        headers = {}
+        if request.get_access_token() is not None:
+            headers["X-GS2-ACCESS-TOKEN"] = request.get_access_token()
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_stamina_client.control.ConsumeStaminaRequest import ConsumeStaminaRequest
         from gs2_stamina_client.control.ConsumeStaminaResult import ConsumeStaminaResult
         return ConsumeStaminaResult(self._do_post_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/staminaPool/" + str(("null" if request.get_stamina_pool_name() is None or request.get_stamina_pool_name() == "" else url_encoder.encode(request.get_stamina_pool_name()))) + "/stamina/consume",
+            url=Gs2Constant.ENDPOINT_HOST + "/staminaPool/" + str(("null" if request.get_stamina_pool_name() is None or request.get_stamina_pool_name() == "" else request.get_stamina_pool_name())) + "/stamina/consume",
             service=self.ENDPOINT,
             component=ConsumeStaminaRequest.Constant.MODULE,
             target_function=ConsumeStaminaRequest.Constant.FUNCTION,
@@ -363,9 +354,9 @@ class Gs2StaminaClient(AbstractGs2Client):
             "maxValue": request.get_max_value(),
         }
 
-        headers = { 
-            "X-GS2-ACCESS-TOKEN": request.get_access_token()
-        }
+        headers = {}
+        if request.get_access_token() is not None:
+            headers["X-GS2-ACCESS-TOKEN"] = request.get_access_token()
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_stamina_client.control.ConsumeStaminaByStampTaskRequest import ConsumeStaminaByStampTaskRequest
@@ -389,19 +380,19 @@ class Gs2StaminaClient(AbstractGs2Client):
         :return: 結果
         :rtype: gs2_stamina_client.control.GetStaminaResult.GetStaminaResult
         """
-        query_strings = {
-            'maxValue': request.get_max_value(),
-        }
-        headers = { 
-            "X-GS2-ACCESS-TOKEN": request.get_access_token()
-        }
+        query_strings = {}
+        if request.get_max_value() is not None:
+            query_strings['maxValue'] = request.get_max_value()
+        headers = {}
+        if request.get_access_token() is not None:
+            headers["X-GS2-ACCESS-TOKEN"] = request.get_access_token()
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_stamina_client.control.GetStaminaRequest import GetStaminaRequest
 
         from gs2_stamina_client.control.GetStaminaResult import GetStaminaResult
         return GetStaminaResult(self._do_get_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/staminaPool/" + str(("null" if request.get_stamina_pool_name() is None or request.get_stamina_pool_name() == "" else url_encoder.encode(request.get_stamina_pool_name()))) + "/stamina",
+            url=Gs2Constant.ENDPOINT_HOST + "/staminaPool/" + str(("null" if request.get_stamina_pool_name() is None or request.get_stamina_pool_name() == "" else request.get_stamina_pool_name())) + "/stamina",
             service=self.ENDPOINT,
             component=GetStaminaRequest.Constant.MODULE,
             target_function=GetStaminaRequest.Constant.FUNCTION,

@@ -53,7 +53,7 @@ class ChangeStaminaByStampSheetRequest(Gs2UserRequest):
         :param sheet: スタンプシート
         :type sheet: unicode
         """
-        if sheet and not (isinstance(sheet, str) or isinstance(sheet, unicode)):
+        if sheet is not None and not (isinstance(sheet, str) or isinstance(sheet, unicode)):
             raise TypeError(type(sheet))
         self.__sheet = sheet
 
@@ -82,7 +82,7 @@ class ChangeStaminaByStampSheetRequest(Gs2UserRequest):
         :param key_name: スタンプの暗号鍵
         :type key_name: unicode
         """
-        if key_name and not (isinstance(key_name, str) or isinstance(key_name, unicode)):
+        if key_name is not None and not (isinstance(key_name, str) or isinstance(key_name, unicode)):
             raise TypeError(type(key_name))
         self.__key_name = key_name
 
@@ -111,7 +111,7 @@ class ChangeStaminaByStampSheetRequest(Gs2UserRequest):
         :param max_value: スタミナの最大値
         :type max_value: int
         """
-        if max_value and not isinstance(max_value, int):
+        if max_value is not None and not isinstance(max_value, int):
             raise TypeError(type(max_value))
         self.__max_value = max_value
 
